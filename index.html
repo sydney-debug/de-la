@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>De La Cream — Business Park • Restaurant • Hotel</title>
+  <meta name="description" content="De La Cream: premium business park facilities, an elegant restaurant, and comfortable hotel rooms." />
+  <style>
+    /* --- Palette & base --- */
+    :root{
+      --cream:#faf6f0;
+      --soft-gold:#c9a94a;
+      --muted-gray:#6b6b6b;
+      --accent:#e7dfd6;
+      --deep:#2b2b2b;
+      --glass: rgba(255,255,255,0.72);
+      --radius:14px;
+      --container:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:var(--deep);background:linear-gradient(180deg,var(--cream),#fff);}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* --- Layout --- */
+    .wrap{max-width:var(--container);margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 8px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:64px;height:64px;background:linear-gradient(135deg,var(--soft-gold),#f7ead0);border-radius:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .logo strong{font-size:18px;color:var(--deep);letter-spacing:0.6px}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{padding:8px 14px;border-radius:10px;font-weight:600;transition:all 0.2s}
+    nav a.cta{background:var(--soft-gold);color:#fff}
+    nav a:hover{opacity:0.88;transform:translateY(-1px)}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:12px}
+    .hero-card{background:var(--glass);padding:28px;border-radius:18px;box-shadow:0 8px 30px rgba(24,24,24,0.06);backdrop-filter:blur(10px)}
+    .hero h1{margin:0 0 10px;font-size:34px;font-weight:700}
+    .hero p{margin:0 0 18px;color:var(--muted-gray);line-height:1.6}
+    .hero .cta-row{display:flex;gap:10px}
+    .btn{padding:12px 16px;border-radius:12px;font-weight:700;border:0;cursor:pointer;transition:all 0.2s}
+    .btn.primary{background:var(--deep);color:#fff}
+    .btn.ghost{background:transparent;border:1px solid rgba(43,43,43,0.08)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+
+    /* hero visual */
+    .hero-visual{background:linear-gradient(135deg,var(--accent),#fff);border-radius:18px;padding:20px;display:flex;align-items:center;justify-content:center;min-height:300px}
+    .building-icon{width:120px;height:120px;background:var(--soft-gold);border-radius:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,0.1)}
+
+    /* features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+    .feature{background:#fff;border-radius:12px;padding:20px;box-shadow:0 6px 18px rgba(0,0,0,0.04);transition:transform 0.2s}
+    .feature:hover{transform:translateY(-4px)}
+    .feature-icon{width:48px;height:48px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+    .feature h3{margin:8px 0 4px;font-size:18px}
+    .feature p{margin:0;color:var(--muted-gray);font-size:14px;line-height:1.5}
+
+    /* sections */
+    section{margin-top:48px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+    .section-head h2{margin:0;font-size:28px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+    .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.06);transition:transform 0.2s}
+    .card:hover{transform:translateY(-4px)}
+    .card-image{height:180px;background:linear-gradient(135deg,var(--accent),#f0f0f0);display:flex;align-items:center;justify-content:center}
+    .card .meta{padding:16px}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted-gray);font-size:14px;line-height:1.5}
+    .card .price{color:var(--soft-gold);font-weight:700;margin-top:8px}
+
+    /* room grid */
+    .room-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+
+    /* forms */
+    .booking-form{background:#fff;padding:24px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+    form{display:grid;gap:12px}
+    label{font-size:13px;color:var(--muted-gray);font-weight:600}
+    input,select,textarea{padding:12px;border-radius:10px;border:1px solid #e7e3df;font-size:14px;transition:border-color 0.2s}
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--soft-gold)}
+    .row{display:flex;gap:12px}
+    .row > *{flex:1}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px}
+    .gallery-item{height:120px;background:linear-gradient(135deg,var(--accent),#f5f5f5);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:transform 0.2s}
+    .gallery-item:hover{transform:scale(1.02)}
+
+    /* testimonials */
+    .testimonials{display:flex;gap:16px;margin-top:20px}
+    .testimonial{background:linear-gradient(180deg,#fff, #fcfbfa);padding:20px;border-radius:12px;flex:1;box-shadow:0 4px 12px rgba(0,0,0,0.04)}
+    .testimonial .quote{font-style:italic;margin-bottom:12px;line-height:1.6}
+    .testimonial .author{font-weight:600;color:var(--soft-gold)}
+
+    /* footer */
+    footer{margin-top:48px;padding:32px;background:linear-gradient(180deg,var(--accent),#fff);border-radius:12px}
+    .footer-content{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .footer-section h4{margin:0 0 12px;color:var(--deep)}
+    .footer-section p,.footer-section a{color:var(--muted-gray);font-size:14px;line-height:1.6}
+    .footer-bottom{text-align:center;margin-top:24px;padding-top:24px;border-top:1px solid rgba(107,107,107,0.1);color:var(--muted-gray);font-size:13px}
+
+    /* responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr}
+      .cards,.features{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+      .footer-content{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:680px){
+      nav{display:none}
+      .cards,.features{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .hero h1{font-size:26px}
+      .footer-content{grid-template-columns:1fr}
+      .testimonials{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="logo">
+          <strong>DC</strong>
+        </div>
+        <div>
+          <h2 style="margin:0;font-size:20px">De La Cream</h2>
+          <p style="margin:0;font-size:12px;color:var(--muted-gray)">Business • Dining • Stay</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#business">Business</a>
+        <a href="#restaurant">Restaurant</a>
+        <a href="#hotel">Hotel</a>
+        <a href="#contact" class="cta">Book Now</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="hero-card">
+        <h1>Premium Business Park, Restaurant & Hotel</h1>
+        <p>Experience luxury and convenience at De La Cream. Modern office spaces, exquisite dining, and comfortable accommodations all in one prestigious location.</p>
+        <div class="cta-row">
+          <button class="btn primary" onclick="scrollToSection('contact')">Reserve Now</button>
+          <button class="btn ghost" onclick="scrollToSection('business')">Explore Facilities</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="building-icon">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <rect x="10" y="15" width="40" height="35" fill="white" rx="4"/>
+            <rect x="15" y="20" width="6" height="6" fill="#c9a94a"/>
+            <rect x="25" y="20" width="6" height="6" fill="#c9a94a"/>
+            <rect x="35" y="20" width="6" height="6" fill="#c9a94a"/>
+            <rect x="15" y="30" width="6" height="6" fill="#c9a94a"/>
+            <rect x="25" y="30" width="6" height="6" fill="#c9a94a"/>
+            <rect x="35" y="30" width="6" height="6" fill="#c9a94a"/>
+            <rect x="25" y="40" width="10" height="10" fill="#2b2b2b"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="15" stroke="#c9a94a" stroke-width="2" fill="none" rx="2"/>
+            <path d="M8 21v-5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v5" stroke="#c9a94a" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Business Park</h3>
+        <p>Modern office spaces with state-of-the-art facilities, meeting rooms, and co-working areas designed for productivity.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#c9a94a"/>
+          </svg>
+        </div>
+        <h3>Fine Dining</h3>
+        <p>Exquisite restaurant serving gourmet cuisine with locally sourced ingredients and an extensive wine selection.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z" stroke="#c9a94a" stroke-width="2" fill="none"/>
+            <path d="M8 15h8" stroke="#c9a94a" stroke-width="2"/>
+            <path d="M8 11h8" stroke="#c9a94a" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3>Luxury Hotel</h3>
+        <p>Comfortable accommodations with premium amenities, spa services, and personalized hospitality for business and leisure travelers.</p>
+      </div>
+    </div>
+
+    <!-- Business Park Section -->
+    <section id="business">
+      <div class="section-head">
+        <h2>Business Park Facilities</h2>
+        <button class="btn ghost" onclick="showBookingForm('business')">Inquire About Offices</button>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <rect x="10" y="10" width="60" height="40" fill="#c9a94a" rx="4"/>
+              <rect x="15" y="15" width="50" height="30" fill="white" rx="2"/>
+              <circle cx="25" cy="25" r="3" fill="#c9a94a"/>
+              <rect x="35" y="22" width="20" height="6" fill="#e7dfd6"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Executive Offices</h3>
+            <p>Private offices with premium furnishing, high-speed internet, and dedicated parking spaces.</p>
+            <div class="price">From $1,200/month</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <rect x="5" y="15" width="70" height="30" fill="#c9a94a" rx="4"/>
+              <rect x="10" y="20" width="60" height="20" fill="white" rx="2"/>
+              <circle cx="20" cy="25" r="2" fill="#c9a94a"/>
+              <circle cx="30" cy="25" r="2" fill="#c9a94a"/>
+              <circle cx="40" cy="25" r="2" fill="#c9a94a"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Meeting Rooms</h3>
+            <p>Fully equipped conference rooms with AV systems, whiteboards, and catering services available.</p>
+            <div class="price">From $50/hour</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <rect x="10" y="10" width="60" height="40" fill="#c9a94a" rx="4"/>
+              <rect x="15" y="15" width="25" height="15" fill="white" rx="2"/>
+              <rect x="45" y="15" width="20" height="15" fill="white" rx="2"/>
+              <rect x="15" y="35" width="50" height="10" fill="white" rx="2"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Co-working Space</h3>
+            <p>Flexible workspace with hot desks, collaboration areas, and networking opportunities.</p>
+            <div class="price">From $25/day</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Restaurant Section -->
+    <section id="restaurant">
+      <div class="section-head">
+        <h2>Restaurant & Dining</h2>
+        <button class="btn ghost" onclick="showBookingForm('restaurant')">Make Reservation</button>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <circle cx="40" cy="30" r="20" fill="#c9a94a"/>
+              <circle cx="40" cy="30" r="15" fill="white"/>
+              <rect x="35" y="25" width="10" height="2" fill="#c9a94a"/>
+              <rect x="35" y="30" width="10" height="2" fill="#c9a94a"/>
+              <rect x="35" y="35" width="10" height="2" fill="#c9a94a"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Fine Dining</h3>
+            <p>Elegant atmosphere with chef-curated seasonal menus featuring local and international cuisine.</p>
+            <div class="price">Prix fixe from $85</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <rect x="20" y="20" width="40" height="20" fill="#c9a94a" rx="4"/>
+              <rect x="25" y="25" width="30" height="10" fill="white" rx="2"/>
+              <circle cx="30" cy="30" r="2" fill="#c9a94a"/>
+              <circle cx="40" cy="30" r="2" fill="#c9a94a"/>
+              <circle cx="50" cy="30" r="2" fill="#c9a94a"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Business Lunch</h3>
+            <p>Quick and sophisticated lunch options perfect for business meetings and networking.</p>
+            <div class="price">From $28</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <rect x="15" y="15" width="50" height="30" fill="#c9a94a" rx="4"/>
+              <rect x="20" y="20" width="40" height="20" fill="white" rx="2"/>
+              <circle cx="25" cy="25" r="1" fill="#c9a94a"/>
+              <circle cx="30" cy="25" r="1" fill="#c9a94a"/>
+              <circle cx="35" cy="25" r="1" fill="#c9a94a"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Private Events</h3>
+            <p>Exclusive dining rooms for corporate events, celebrations, and special occasions.</p>
+            <div class="price">Custom pricing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hotel Section -->
+    <section id="hotel">
+      <div class="section-head">
+        <h2>Hotel Accommodations</h2>
+        <button class="btn ghost" onclick="showBookingForm('hotel')">Check Availability</button>
+      </div>
+      <div class="room-grid">
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <rect x="10" y="20" width="60" height="25" fill="#c9a94a" rx="4"/>
+              <rect x="15" y="25" width="50" height="15" fill="white" rx="2"/>
+              <rect x="20" y="30" width="15" height="5" fill="#c9a94a"/>
+              <rect x="40" y="30" width="20" height="5" fill="#e7dfd6"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Executive Suite</h3>
+            <p>Spacious suite with separate living area, work desk, and premium amenities.</p>
+            <div class="price">From $280/night</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <rect x="15" y="20" width="50" height="25" fill="#c9a94a" rx="4"/>
+              <rect x="20" y="25" width="40" height="15" fill="white" rx="2"/>
+              <rect x="25" y="30" width="12" height="5" fill="#c9a94a"/>
+              <rect x="42" y="30" width="13" height="5" fill="#e7dfd6"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Business Room</h3>
+            <p>Comfortable room designed for business travelers with work area and high-speed WiFi.</p>
+            <div class="price">From $180/night</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <rect x="12" y="18" width="56" height="28" fill="#c9a94a" rx="4"/>
+              <rect x="17" y="23" width="46" height="18" fill="white" rx="2"/>
+              <rect x="22" y="28" width="16" height="8" fill="#c9a94a"/>
+              <rect x="42" y="28" width="16" height="8" fill="#e7dfd6"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Deluxe Room</h3>
+            <p>Elegant room with luxury furnishings, marble bathroom, and city or garden views.</p>
+            <div class="price">From $220/night</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image">
+            <svg width="80" height="60" viewBox="0 0 80 60" fill="none">
+              <rect x="8" y="15" width="64" height="32" fill="#c9a94a" rx="4"/>
+              <rect x="13" y="20" width="54" height="22" fill="white" rx="2"/>
+              <rect x="18" y="25" width="20" height="12" fill="#c9a94a"/>
+              <rect x="42" y="25" width="20" height="12" fill="#e7dfd6"/>
+            </svg>
+          </div>
+          <div class="meta">
+            <h3>Presidential Suite</h3>
+            <p>Ultimate luxury with panoramic views, private terrace, and personalized concierge service.</p>
+            <div class="price">From $450/night</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section>
+      <div class="section-head">
+        <h2>Gallery</h2>
+      </div>
+      <div class="gallery">
+        <div class="gallery-item">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="5" y="10" width="30" height="20" fill="#c9a94a" rx="2"/>
+            <rect x="8" y="13" width="24" height="14" fill="white" rx="1"/>
+          </svg>
+        </div>
+        <div class="gallery-item">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <circle cx="20" cy="20" r="12" fill="#c9a94a"/>
+            <circle cx="20" cy="20" r="8" fill="white"/>
+          </svg>
+        </div>
+        <div class="gallery-item">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="8" y="12" width="24" height="16" fill="#c9a94a" rx="2"/>
+            <rect x="11" y="15" width="18" height="10" fill="white" rx="1"/>
+          </svg>
+        </div>
+        <div class="gallery-item">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="10" y="8" width="20" height="24" fill="#c9a94a" rx="2"/>
+            <rect x="13" y="11" width="14" height="18" fill="white" rx="1"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+      <div class="section-head">
+        <h2>What Our Guests Say</h2>
+      </div>
+      <div class="testimonials">
+        <div class="testimonial">
+          <div class="quote">"De La Cream exceeded all expectations. The business facilities are top-notch, and the restaurant is simply exceptional. Perfect for our corporate retreat."</div>
+          <div class="author">— Sarah Chen, CEO TechVision</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote">"The attention to detail is remarkable. From the elegant rooms to the exquisite dining, every aspect of our stay was perfectly orchestrated."</div>
+          <div class="author">— Michael Rodriguez, Investment Director</div>
+        </div>
+        <div class="testimonial">
+          <div class="quote">"An oasis of luxury and professionalism. The co-working spaces are inspiring, and the hotel service is impeccable. Highly recommended."</div>
+          <div class="author">— Emma Thompson, Consultant</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section id="contact">
+      <div class="section-head">
+        <h2>Make a Reservation</h2>
+      </div>
+      <div class="booking-form">
+        <form id="bookingForm" onsubmit="handleBooking(event)">
+          <div class="row">
+            <div>
+              <label>Service Type</label>
+              <select id="serviceType" required>
+                <option value="">Select Service</option>
+                <option value="business">Business Park</option>
+                <option value="restaurant">Restaurant</option>
+                <option value="hotel">Hotel</option>
+              </select>
+            </div>
+            <div>
+              <label>Date</label>
+              <input type="date" id="bookingDate" required>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label>Name</label>
+              <input type="text" id="guestName" placeholder="Your full name" required>
+            </div>
+            <div>
+              <label>Email</label>
+              <input type="email" id="guestEmail" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label>Phone</label>
+              <input type="tel" id="guestPhone" placeholder="+1 (555) 123-4567" required>
+            </div>
+            <div>
+              <label>Guests/Attendees</label>
+              <select id="guestCount" required>
+                <option value="">Select number</option>
+                <option value="1">1 person</option>
+                <option value="2">2 people</option>
+                <option value="3-5">3-5 people</option>
+                <option value="6-10">6-10 people</option>
+                <option value="10+">10+ people</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label>Special Requests</label>
+            <textarea id="specialRequests" placeholder="Any special requirements or preferences..." rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn primary" style="width:100%;margin-top:8px">Submit Reservation Request</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Contact Information</h4>
+          <p>📍 123 Premium Boulevard<br>Business District, City 12345</p>
+          <p>📞 +1 (555) 123-CREAM<br>✉️ info@delacream.com</p>
+        </div>
+        <div class="footer-section">
+          <h4>Operating Hours</h4>
+          <p><strong>Business Park:</strong> 24/7 Access<br><strong>Restaurant:</strong> 6:30 AM - 11:00 PM<br><strong>Hotel:</strong> 24/7 Reception</p>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <p>• Executive Offices<br>• Meeting Rooms<br>• Fine Dining<br>• Luxury Accommodations<br>• Event Planning<br>• Concierge Services</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 De La Cream. All rights reserved. | Privacy Policy | Terms of Service</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scrolling to sections
+    function scrollToSection(sectionId) {
+      document.getElementById(sectionId).scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    // Pre-fill booking form based on service type
+    function showBookingForm(serviceType) {
+      document.getElementById('serviceType').value = serviceType;
+      scrollToSection('contact');
+    }
+
+    // Handle form submission
+    function handleBooking(event) {
+      event.preventDefault();
+      
+      const formData = {
+        serviceType: document.getElementById('serviceType').value,
+        date: document.getElementById('bookingDate').value,
+        name: document.getElementById('guestName').value,
+        email: document.getElementById('guestEmail').value,
+        phone: document.getElementById('guestPhone').value,
+        guestCount: document.getElementById('guestCount').value,
+        specialRequests: document.getElementById('specialRequests').value
+      };
+
+      // Show confirmation message
+      alert(`Thank you, ${formData.name}! Your reservation request for ${formData.serviceType} on ${formData.date} has been submitted. We'll contact you within 24 hours to confirm your booking.`);
+      
+      // Reset form
+      document.getElementById('bookingForm').reset();
+    }
+
+    // Set minimum date to today
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('bookingDate').setAttribute('min', today);
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98220a3812cf0db4',t:'MTc1ODM3ODgyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
